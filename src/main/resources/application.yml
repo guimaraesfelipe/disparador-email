@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: disparador-email
+  datasource:
+    url: ${DISPARADOR_EMAIL_DB_URL}
+    username: ${DISPARADOR_EMAIL_DB_USER}
+    password: ${DISPARADOR_EMAIL_DB_PASS}
+    driver-class-name: ${DISPARADOR_EMAIL_DB_DRIVER}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+        format_sql: true
+  mail:
+    host: ${SMTP_HOST}
+    port: ${SMTP_PORT}
+    username: ${SMTP_USER}
+    password: ${SMTP_PASS}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+info:
+  app:
+    name: "@project.name@"
+    description: "@project.description@"
+    version: "@project.version@"
+    encoding: "@project.build.sourceEncoding@"
+    java:
+      version: "@java.version@"
+
+config:
+  profile: "default"
